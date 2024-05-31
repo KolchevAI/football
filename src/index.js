@@ -3,7 +3,6 @@ import ReactDOM from 'react-dom/client';
 import './index.css';
 import App from './App';
 
-
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   <React.StrictMode>
@@ -23,6 +22,51 @@ const connection = mysql.createConnection({
   database: 'football'
 });
 
+app.use(express.static(__dirname + "/public/img"));
+app.use(express.static(__dirname + "/public"));
+
+app.use("/main",function (_, response) {
+  response.redirect("/")
+});
+
+let users = [];
+
+app.get("/", function(request, response){
+  response.sendFile(__dirname + "/public/index.html"); //
+});
+
+app.get("/login", function(request, response){
+  response.sendFile(__dirname + "/public/lk.html"); //
+});
+app.post('/login', jsonParser, (req, res) => {
+  let userEmail = req.body.email;
+  let userPassword = req.body.password;
+
+  let user = users.find(user => user.email === userEmail && user.password === userPassword);
+
+  if (user) {
+    res.send({ success: 'Успешный вход!' });
+  } else {
+    res.status(400).send({ error: 'Некорректно введен email или пароль.' });
+    return;
+  }
+});
+
+app.get("/about", function(request, response){
+  response.sendFile(__dirname + "/public/aboutus.html") //исправить
+})
+
+app.use((request, response, next) => {
+  response.status(404).sendFile(__dirname + "/public/error404.html");
+});
+
+app.listen(3000, () => console.log('The server is running on http://localhost:3000'));
+
+
+
+
+
+//таблица
 app.get('/tournament-table', async (req, res) => {
   const teams = await getTeams();
   const matches = await getMatches();
