@@ -1,0 +1,222 @@
+.TournamentName {
+  margin-top: 40px;
+  margin-left: 130px;
+}
+
+.HM {
+  display: flex;
+  align-items: center;
+}
+
+.HM hr {
+  margin-top: 45px;
+  width: 100%;
+  height: 100%;
+  color: #B3CCCC;
+}
+
+.Heading_matches {
+  margin-top: 45px;
+  margin-left: 30px;
+  margin-right: 25px;
+  font-size: 32px;
+  
+}
+
+.match-table li {
+  list-style: none;
+}
+
+.block_1 {
+  display: inline-block;
+  margin: 0 auto;
+}
+
+.wrapper {
+  margin-top: 20px;
+  margin-left: 30px;
+  width: 690px;
+  height: 100%;
+  background: #161616;
+  position: relative;
+  cursor: pointer;
+}
+
+.match_1 .date_time {
+  position: relative;
+  top:15px;
+  left: 20px;
+  font-size: 20px;
+}
+
+.match_1 .match_data {
+  position: relative;
+  display: inline;
+  margin-left: 20px;
+  left: 260px;
+  bottom: 22px;
+}
+
+.match_2 {
+  position: relative;
+  left: 30px;
+}
+
+.match_2 .date_time {
+  position: relative;
+  top:23px;
+  left: 20px;
+  font-size: 20px;
+}
+
+.match_2 .match_data {
+  position: relative;
+  display: inline;
+  margin-left: 20px;
+  left: 260px;
+  bottom: 17px;
+}
+
+.wrapper_2 {
+  cursor: pointer;
+}
+
+.wrapper_3 {
+  margin-top: 20px;
+  margin-left: 30px;
+  width: 690px;
+  height: 100%;
+  background: #161616;
+  position: relative;
+  cursor: pointer;
+}
+
+.match_3 .date_time {
+  position: relative;
+  top:15px;
+  left: 20px;
+  font-size: 20px;
+}
+
+.match_3 .match_data {
+  position: relative;
+  display: inline;
+  margin-left: 20px;
+  left: 260px;
+  bottom: 22px;
+}
+
+
+.wrapper_4 {
+  margin-top: 20px;
+  margin-left: 30px;
+  width: 690px;
+  height: 100%;
+  background: #161616;
+  position: relative;
+  cursor: pointer;
+}
+
+.match_4 .date_time {
+  position: relative;
+  top:15px;
+  left: 20px;
+  font-size: 20px;
+}
+
+.match_4 .match_data {
+  position: relative;
+  display: inline;
+  margin-left: 20px;
+  left: 260px;
+  bottom: 22px;
+}
+
+
+.match_5 {
+  position: relative;
+  left: 30px;
+}
+
+.match_5 .date_time {
+  position: relative;
+  top:23px;
+  left: 20px;
+  font-size: 20px;
+}
+
+.match_5 .match_data {
+  position: relative;
+  display: inline;
+  margin-left: 20px;
+  left: 260px;
+  bottom: 17px;
+}
+
+.wrapper_5 {
+  cursor: pointer;
+}
+
+.wrapper_6 {
+  margin-top: 20px;
+  margin-left: 30px;
+  width: 690px;
+  height: 100%;
+  background: #161616;
+  position: relative;
+  cursor: pointer;
+}
+
+.match_6 .date_time {
+  position: relative;
+  top:15px;
+  left: 20px;
+  font-size: 20px;
+}
+
+.match_6 .match_data {
+  position: relative;
+  display: inline;
+  margin-left: 20px;
+  left: 260px;
+  bottom: 22px;
+}
+
+
+/* ================================================================= */
+
+
+.Tourn_table {
+  width: 1415px;
+  height: 60px;
+  border-collapse: collapse;
+  margin: 15px 25px;
+}
+
+
+.Tourn_table th,
+.Tourn_table td {
+  border-bottom: 1px solid #f5f5f580;
+  padding: 10px;
+  text-align: center;
+}
+
+.tr_2 {
+  background-color: #161616;
+}
+
+/* ================================================================= */
+
+.teams-c {
+  width: 100px;
+  height: 100px;
+  background: #f5f5f580;
+  color: #000;
+  margin: 20px 20px;
+  margin-left: 23px;
+  display: flex;
+  display: inline-block;
+  justify-content: center;
+  align-items: center;
+  margin-bottom: 50px;
+}

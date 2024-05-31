@@ -1,10 +1,18 @@
-import header from "./components/header";
+import "./styles/main.css"
+import Header from "./components/Header"
+import Footer from "./components/Footer"
+import MatchComponent from "./components/Matches"
+import TournamentTable from "./components/Table"
+import Team from "./components/Teams"
 
 function App() {
   return (
-    <div className="wrapper">
-      <header />
-      <div dangerouslySetInnerHTML={{ __html: require('../public/index.html') }} />
+    <div className="main">
+      <Header />
+      <MatchComponent />
+      <TournamentTable />
+      <Team />
+      <Footer />
     </div>
   );
 }
