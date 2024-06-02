@@ -11,53 +11,52 @@ root.render(
 const express = require('express');
 const app = express();
 const port = 3000;
-const pool = require('./db');
+const db = require('./db');
 const jsonParser = express.json();
+const router = express.Router();
 
-app.use(express.static(__dirname + "/public/img"));
-app.use(express.static(__dirname + "/public"));
+//матчи
 
-app.use("/main",function (_, response) {
-  response.redirect("/")
-});
-
-let users = [];
-
-app.get("/", function(request, response){
-  response.sendFile(__dirname + "/public/index.html"); //
-});
-
-app.get("/login", function(request, response){
-  response.sendFile(__dirname + "/public/lk.html"); //
-});
-app.post('/login', jsonParser, (req, res) => {
-  let userEmail = req.body.email;
-  let userPassword = req.body.password;
-
-  let user = users.find(user => user.email === userEmail && user.password === userPassword);
-
-  if (user) {
-    res.send({ success: 'Успешный вход!' });
-  } else {
-    res.status(400).send({ error: 'Некорректно введен email или пароль.' });
-    return;
-  }
-});
-
-app.get("/about", function(request, response){
-  response.sendFile(__dirname + "/public/aboutus.html") //исправить
-})
-
-app.use((request, response, next) => {
-  response.status(404).sendFile(__dirname + "/public/error404.html");
-});
-
-app.listen(3000, () => console.log('The server is running on http://localhost:3000'));
-
-
-
+router.get("/matches", async (req, res) => {
+    try {
+      const upcomingMatches = await db.query(
+        SELECT *
+        FROM matches
+        WHERE match_date >= NOW()
+        ORDER BY match_date ASC
+      );
+      res.json(upcomingMatches.rows);
+    } catch (err) {
+      console.error(err.message);
+      res.status(500).json({ error: "Error getting upcoming matches" });
+    }
+  });
+  
+  router.get("/matches/:id", async (req, res) => {
+    const matchId = req.params.id;
+  
+    try {
+      const match = await db.query(
+        SELECT *
+        FROM matches
+        WHERE match_id = $1
+      , [matchId]);
+  
+      if (match.rows.length === 0) {
+        return res.status(404).json({ error: "Match not found" });
+      }
+  
+      res.json(match.rows[0]);
+    } catch (err) {
+      console.error(err.message);
+      res.status(500).json({ error: "Error getting match details" });
+    }
+  });
+  
+  module.exports = router;
 
 
+  
 //таблица
 app.get('/tournament-table', async (req, res) => {
   const teams = await getTeams();
