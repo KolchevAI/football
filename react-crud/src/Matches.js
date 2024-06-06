@@ -8,52 +8,47 @@ root.render(
   </React.StrictMode>
 );
 
-const express = require('express');
-const app = express();
-const port = 3000;
-const db = require('./db');
-const jsonParser = express.json();
-const router = express.Router();
 
 //матчи
 
 router.get("/matches", async (req, res) => {
-    try {
-      const upcomingMatches = await db.query(
-        SELECT *
+  try {
+    const upcomingMatches = await pool.query(
+      `SELECT *
         FROM matches
         WHERE match_date >= NOW()
-        ORDER BY match_date ASC
-      );
-      res.json(upcomingMatches.rows);
-    } catch (err) {
-      console.error(err.message);
-      res.status(500).json({ error: "Error getting upcoming matches" });
-    }
-  });
-  
-  router.get("/matches/:id", async (req, res) => {
-    const matchId = req.params.id;
-  
-    try {
-      const match = await db.query(
-        SELECT *
+        ORDER BY match_date ASC`
+    );
+    res.json(upcomingMatches.rows);
+  } catch (err) {
+    console.error(err.message);
+    res.status(500).json({ error: "Error getting upcoming matches" });
+  }
+});
+
+router.get("/matches/:id", async (req, res) => {
+  const matchId = req.params.id;
+
+  try {
+    const match = await pool.query(
+      `SELECT *
         FROM matches
-        WHERE match_id = $1
-      , [matchId]);
-  
-      if (match.rows.length === 0) {
-        return res.status(404).json({ error: "Match not found" });
-      }
-  
-      res.json(match.rows[0]);
-    } catch (err) {
-      console.error(err.message);
-      res.status(500).json({ error: "Error getting match details" });
+        WHERE match_id = $1`,
+      [matchId]
+    );
+
+    if (match.rows.length === 0) {
+      return res.status(404).json({ error: "Match not found" });
     }
-  });
-  
-  module.exports = router;
+
+    res.json(match.rows[0]);
+  } catch (err) {
+    console.error(err.message);
+    res.status(500).json({ error: "Error getting match details" });
+  }
+});
+
+module.exports = router;
 
 
   
