@@ -1,39 +1,60 @@
-import React, { Component } from "react";
-import "bootstrap/dist/css/bootstrap.min.css";
+import React from 'react';
+import 'bootstrap/dist/css/bootstrap.min.css';
+import TournamentTable from './components/TournamentTable';
+import TeamCards from './components/TeamCards';
+import Matches from './components/Matches';
 
-class App extends Component {
-  render() {
-    return (
-      <div>
-        <nav className="navbar navbar-expand navbar-dark bg-dark">
-          <a href="/tutorials" className="navbar-brand">
-            bezKoder
-          </a>
-          <div className="navbar-nav mr-auto">
+// Основной компонент приложения
+function App() {
+  return (
+    <div>
+      {/* Навбар */}
+      <nav className="navbar navbar-expand-lg navbar-dark bg-dark">
+        <a className="navbar-brand" href="#">Логотип</a>
+        <div className="collapse navbar-collapse">
+          <ul className="navbar-nav mr-auto">
             <li className="nav-item">
-              <Link to={"/tutorials"} className="nav-link">
-                Tutorials
-              </Link>
+              <a className="nav-link" href="#">Переводство</a>
             </li>
             <li className="nav-item">
-              <Link to={"/add"} className="nav-link">
-                Add
-              </Link>
+              <a className="nav-link" href="#">Организаторам</a>
             </li>
-          </div>
-        </nav>
-
-        <div className="container mt-3">
-          <Routes>
-            <Route path="/" element={<TutorialsList/>} />
-            <Route path="/tutorials" element={<TutorialsList/>} />
-            <Route path="/add" element={<AddTutorial/>} />
-            <Route path="/tutorials/:id" element={<Tutorial/>} />
-          </Routes>
+          </ul>
         </div>
+      </nav>
+
+      <div className="container mt-4">
+        {/* Заголовок */}
+        <div className="d-flex justify-content-between align-items-center">
+          <img src="logo.png" alt="Логотип" className="img-fluid" />
+          <h1>РУССКИЙ МЕДВЕЖОНОК</h1>
+        </div>
+
+        {/* Матчи */}
+        <Matches />
+
+        {/* Таблица турнира */}
+        <div className="mt-4">
+          <TournamentTable />
+        </div>
+
+        {/* Карточки команд */}
+        <TeamCards />
+
+        {/* Футер */}
+        <footer className="footer mt-4">
+          <a href="#" className="text-light">Обратная связь</a>
+          <div className="d-flex justify-content-end">
+            <a href="#"><i className="fab fa-facebook text-light mx-2"></i></a>
+            <a href="#"><i className="fab fa-twitter text-light mx-2"></i></a>
+            <a href="#"><i className="fab fa-instagram text-light mx-2"></i></a>
+            <a href="#"><i className="fab fa-linkedin text-light mx-2"></i></a>
+            <a href="#"><i className="fab fa-youtube text-light mx-2"></i></a>
+          </div>
+        </footer>
       </div>
-    );
-  }
+    </div>
+  );
 }
 
 export default App;
